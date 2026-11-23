@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Rivoluzione Comunista</title>
+    <style>
+        /* --- CSS INTEGRATO PER FUNZIONARE SUBITO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #2c3e50;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            height: 60px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #e74c3c;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .slider-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 30px 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            align-items: center;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .student-tag {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .slide-content h2 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 6px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .key-points ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .key-points li {
+            font-size: 0.95rem;
+            line-height: 1.35;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .key-points li::before {
+            content: "■";
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+            font-size: 0.75rem;
+            top: 2px;
+        }
+
+        .key-points strong {
+            color: #1a1a1a;
+        }
+
+        .key-points em {
+            color: #555;
+            font-style: italic;
+        }
+
+        .slide-image {
+            background: #fdfdfd;
+            border: 1px solid #e1e4e8;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .slide-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 180px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .img-caption {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        .slider-controls {
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            height: 45px;
+        }
+
+        .slider-controls button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .slider-controls button:hover {
+            background: #e74c3c;
+        }
+
+        #slide-counter {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">La Rivoluzione Comunista</div>
+        <nav>
+            <button class="nav-btn active" onclick="goToSlide(0)">Salzano</button>
+            <button class="nav-btn" onclick="goToSlide(1)">Gorrasi</button>
+            <button class="nav-btn" onclick="goToSlide(2)">Ardia</button>
+            <button class="nav-btn" onclick="goToSlide(3)">Colangelo</button>
+        </nav>
+    </header>
+
+    <main class="slider-container">
+
+        <!-- SLIDE 1 -->
+        <section class="slide active" id="slide-1">
+            <div class="slide-content">
+                <span class="student-tag"></span>
+                <h2>La crisi dello zarismo: dal 1905 alla Rivoluzione di Febbraio</h2>
+                <div class="grid-layout">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>Potere assoluto dello zar Nicola II e campagne in profonda povertà.</strong> </li>
+                            <li><strong>Bolscevichi vs Menscevichi:</strong> </li>                            <li><strong>La rivoluzione del 1905:</strong> La "Domenica di sangue" e la nascita dei primi <strong>Soviet</strong>.</li>
+                            <li><strong>L'abdicazione dello zar:</strong> Rivoluzione di Febbraio 1917 e nascita del "doppio potere".</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+    <div class="img-box">
+        <img src="img1b.jpg" alt="Zar Nicola II">
+        <p class="img-caption">Ritratto ufficiale Zar Nicola II</p>
+    </div>
+    <div class="img-box">
+        <img src="img1a.jpg" alt="Rivoluzione 1905 o Febbraio 1917">
+        <p class="img-caption">Domenica di sangue 1905 Pietroburgo</p>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2 -->
+        <section class="slide" id="slide-2">
+            <div class="slide-content">
+                <span class="student-tag"></span>
+                <h2>Il 1917, la presa del potere bolscevica e la pace di Brest-Litovsk</h2>
+                <div class="grid-layout">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>Le Tesi di Aprile</strong></li>
+                            <li><strong>I bolscevichi al potere:</strong> Insurrezione armata e conquista del Palazzo d'Inverno (Ottobre 1917).</li>
+                            <li><strong>I primi provvedimenti</strong></li>
+                            <li><strong>La dittatura leninista</strong></li>
+                            <li><strong>La pace di Brest-Litovsk</strong></li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+    <div class="img-box">
+        <img src="img2a.jpg" alt="Lenin comizio 1917">
+        <p class="img-caption">Lenin - Comizio del 1917</p>
+    </div>
+    <div class="img-box">
+        <img src="img2b.jpg" alt="Assalto Palazzo d'Inverno">
+        <p class="img-caption">Assalto al Palazzo d'Inverno 1917</p>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3 -->
+        <section class="slide" id="slide-3">
+            <div class="slide-content">
+                <span class="student-tag"></span>
+                <h2>La Guerra Civile, il Comunismo di guerra e la nascita dei Partiti Comunisti</h2>
+                <div class="grid-layout">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>Una terribile guerra civile:</strong> Scontro totale vinto dall'Armata Rossa organizzata da Trotzkij.</li>
+                            <li><strong>L'eliminazione dello zar e il Comunismo di guerra</strong></li>
+                            <li><strong>La Terza Internazionale (Comintern)</strong></li>
+                            <li><strong>La scissione di Livorno (1921):</strong> Nascita del Partito comunista d'Italia (Bordiga e Gramsci).</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="img3.jpg" alt="Guerra civile e Armata Rossa">
+                        <p class="img-caption">Lev Trotzkij con l'Armata Rossa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4 -->
+        <section class="slide" id="slide-4">
+            <div class="slide-content">
+                <span class="student-tag"></span>
+                <h2>La NEP, l'URSS e le rivoluzioni fallite in Europa</h2>
+                <div class="grid-layout">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>La NEP</strong></li>
+                            <li><strong>La nascita dell'URSS (1922) e la morte di Lenin (1924)</strong></li>
+                            <li><strong>La repressione dei comunisti:</strong> La "settimana di sangue" a Berlino e l'uccisione di Rosa Luxemburg e Karl Liebknecht (1919).</li>
+                            <li><strong>La guerra russo-polacca</strong></li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+    <div class="img-box">
+        <img src="img4b.jpg" alt="Bandiera URSS 1922">
+        <p class="img-caption">Bandiera URSS 1922 (1922)</p>
+    </div>
+    <div class="img-box">
+        <img src="img4a.jpg" alt="Rosa Luxemburg o Weimar">
+        <p class="img-caption">Rosa Luxemburg</p>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="slider-controls">
+        <button id="prev-btn" onclick="changeSlide(-1)">&#10094; Indietro</button>
+        <span id="slide-counter">1 / 4</span>
+        <button id="next-btn" onclick="changeSlide(1)">Avanti &#10095;</button>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT INTEGRATO --- */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const counter = document.getElementById('slide-counter');
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            slides[currentSlide].classList.add('active');
+            navButtons[currentSlide].classList.add('active');
+
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function changeSlide(step) {
+            showSlide(currentSlide + step);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+    </script>
+</body>
+</html>
